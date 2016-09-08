@@ -1,0 +1,7 @@
+user@debian:~$ /sbin/modinfo simple-lkm.ko
+filename:       simple-lkm.ko
+author:         unknown
+description:    Password Server Module for grumpy admins
+license:        GPL
+depends:
+vermagic:       2.6.26-2-686 SMP mod_unload modversions 686

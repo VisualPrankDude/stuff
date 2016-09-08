@@ -1,0 +1,4 @@
+MODULE_AUTHOR("");
+MODULE_DESCRIPTION("to process");
+MODULE_PARM(interrupt,"i");
+MODULE_PARM_DESC(interrupt,"Interrupt number");
