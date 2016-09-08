@@ -1,0 +1,11 @@
+#!/bin/sh
+# poor mans pattern_create :)
+
+m=${2:-AA}
+n=${1:-100}
+
+for ((i=1;i<$n;++i)) {
+  printf $m
+}
+
+  printf "$m\n"
