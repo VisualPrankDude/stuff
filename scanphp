@@ -1,0 +1,142 @@
+#!/bin/bash
+
+H=$1
+SLEEP=1
+PORT=80
+DATASOURCE=/var/tmp/php.txt # method req
+set -o posix
+
+
+cat >> /var/tmp/php.txt <<EOF
+GET /phpmyadmin/main.php HTTP/1.1 
+GET /services HTTP/1.1 
+GET /phpMyAdmin/main.php HTTP/1.0 
+GET /db/main.php HTTP/1.0 
+GET /web/main.php HTTP/1.0 
+GET /PMA/main.php HTTP/1.0 
+GET /dbadmin/main.php HTTP/1.0 
+GET /PMA2006/main.php HTTP/1.0 
+GET /pma2006/main.php HTTP/1.0 
+GET /sqlmanager/main.php HTTP/1.0 
+GET /mysqlmanager/main.php HTTP/1.0 
+GET /p/m/a/main.php HTTP/1.0 
+GET /PMA2005/main.php HTTP/1.0 
+GET /pma2005/main.php HTTP/1.0 
+GET /phpmanager/main.php HTTP/1.0 
+GET /php-myadmin/main.php HTTP/1.0 
+GET /phpmy-admin/main.php HTTP/1.0 
+GET /mysql/main.php HTTP/1.0 
+GET /myadmin/main.php HTTP/1.0 
+GET /webadmin/main.php HTTP/1.0 
+GET /sqlweb/main.php HTTP/1.0 
+GET /websql/main.php HTTP/1.0 
+GET /webdb/main.php HTTP/1.0 
+GET /mysqladmin/main.php HTTP/1.0 
+GET /mysql-admin/main.php HTTP/1.0 
+GET /phpmyadmin2/main.php HTTP/1.0 
+GET /phpMyAdmin2/main.php HTTP/1.0 
+GET /phpMyAdmin-2/main.php HTTP/1.0 
+GET /php-my-admin/main.php HTTP/1.0 
+GET /phpMyAdmin-2.2.3/main.php HTTP/1.0 
+GET /phpMyAdmin-2.2.6/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.1/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.4/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.5-rc1/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.5-rc2/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.5/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.5-pl1/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.6-rc1/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.6-rc2/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.6/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.7/main.php HTTP/1.0 
+GET /phpMyAdmin-2.5.7-pl1/main.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0-alpha/main.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0-alpha2/main.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0-beta1/main.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0-beta2/main.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0-rc1/main.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0-rc2/main.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0-rc3/main.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0/main.php HTTP/1.0
+GET /administrator/phpMyAdmin-2.6.0/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.0-pl1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.0-pl2/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.0-pl3/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.1-rc1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.1-rc2/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.1-pl1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.1-pl2/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.1-pl3/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.2-rc1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.2-beta1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.2/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.2-pl1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.3/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.3-rc1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.3-pl1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.4-rc1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.4-pl1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.4-pl2/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.4-pl3/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.4-pl4/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.6.4/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.7.0-beta1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.7.0-rc1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.7.0-pl1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.7.0-pl2/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.7.0/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.0-beta1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.0-rc1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.0-rc2/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.0/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.0.1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.0.2/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.0.3/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.0.4/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.1-rc1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.1/main.php HTTP/1.0 
+GET /administrator/phpMyAdmin-2.8.2/main.php HTTP/1.0 
+GET /phpmyadmin/read_dump.phpmain.php HTTP/1.0 
+GET /PMA/read_dump.phpmain.php HTTP/1.0 
+GET /mysql/read_dump.phpmain.php HTTP/1.0 
+GET /xampp/phpmyadmin/read_dump.phpmain.php HTTP/1.0 
+GET /typo3/phpmyadmin/read_dump.phpmain.php HTTP/1.0 
+GET /mysqladmin/read_dump.phpmain.php HTTP/1.0 
+GET /admin/read_dump.phpmain.php HTTP/1.0 
+GET /db/read_dump.phpmain.php HTTP/1.0 
+GET /dbadmin/read_dump.phpmain.php HTTP/1.0 
+GET /web/phpMyAdmin/read_dump.phpmain.php HTTP/1.0 
+GET /admin/pma/read_dump.phpmain.php HTTP/1.0 
+GET /admin/phpmyadmin/read_dump.phpmain.php HTTP/1.0 
+GET /phpmyadmin2/read_dump.phpmain.php HTTP/1.0 
+GET /phpmyadmin1/read_dump.phpmain.php HTTP/1.0 
+GET /phpadmin/read_dump.phpmain.php HTTP/1.0 
+GET /myadmin/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin-2.2.3/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin-2.5.6/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin-2.5.7-pl1/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin-2.6.0-pl3/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin-2.6.1-pl3/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin-2.6.3-pl1/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin 2.6.4-pl4/read_dump.phpmain.php HTTP/1.0
+GET /phpMyAdmin 2.7.0-beta1/read_dump.phpmain.php HTTP/1.0
+GET /phpMyAdmin 2.7.0-rc1/read_dump.phpmain.php HTTP/1.0
+GET /phpMyAdmin 2.7.0/read_dump.phpmain.php HTTP/1.0
+GET /phpMyAdmin-2.6.4/read_dump.phpmain.php HTTP/1.0 
+GET /phpMyAdmin 2.7.0-pl1/read_dump.phpmain.php HTTP/1.0
+GET /phpMyAdmin-2.2.7-pl1/read_dump.phpmain.php HTTP/1.0 
+GET http://119.160.244.97/config/isp_verify_user? HTTP/1.0 
+GET http://heise.de/ HTTP/1.0 
+POST /fun/index.php?!=1&topic=%3C?=hex(unique());?%3E%7C%3C?=$id;?%3E
+EOF
+
+while read line; do
+  sleep $SLEEP
+  {
+echo -e "$line\nHost: $H\nUser-Agent: Mozilla/5.1 (Wind0ws; U; Wind0ws ENTE 6.0; en-US)\nContent-Length: AAA\n\r\r\n"
+}| nc -v $H $PORT
+# make use of other peoples scans
+done < $DATASOURCE
+
