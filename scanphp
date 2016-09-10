@@ -8,6 +8,35 @@ set -o posix
 
 
 cat >> /var/tmp/php.txt <<EOF
+GET /CONTRIBUTING.md HTTP/1.1
+GET /README.txt HTTP/1.1
+GET /admin.php HTTP/1.1
+GET /administrator/ HTTP/1.1
+GET /components/com_mailto/views/sent/metadata.xml HTTP/1.1
+GET /help.txt HTTP/1.1
+GET /htaccess.txt HTTP/1.1
+GET /joomla.xml HTTP/1.1
+GET /libraries/joomla/filesystem/meta/language/en-GB/en-GB.lib_joomla_filesystem_patcher.ini HTTP/1.1
+GET /license.txt HTTP/1.1
+GET /phpunit.xml.dist HTTP/1.1
+GET /readme.htm HTTP/1.1
+GET /readme.html HTTP/1.1
+GET /readme.txt HTTP/1.1
+GET /web.config.txt HTTP/1.1
+GET /wp-admin/css/colors-classic.css HTTP/1.1
+GET /wp-admin/images/wp-logo-2x.png HTTP/1.1
+GET /wp-admin/js/media-upload.dev.js HTTP/1.1
+GET /wp-content/plugins/akismet/akismet.js HTTP/1.1
+GET /wp-content/themes/classic/rtl.css HTTP/1.1
+GET /wp-content/themes/twentyeleven/readme.txt HTTP/1.1
+GET /wp-content/themes/twentyten/images/wordpress.png HTTP/1.1
+GET /wp-content/themes/twentyten/style.css HTTP/1.1
+GET /wp-includes/css/buttons.css HTTP/1.1
+GET /wp-includes/js/scriptaculous/wp-scriptaculous.js HTTP/1.1
+GET /wp-includes/js/tinymce/langs/wp-langs-en.js HTTP/1.1
+GET /wp-includes/js/tinymce/wp-tinymce.js HTTP/1.1
+GET /wp-login.php HTTP/1.1
+PROPFIND /webdav/ HTTP/1.1
 GET /phpmyadmin/main.php HTTP/1.1 
 GET /services HTTP/1.1 
 GET /phpMyAdmin/main.php HTTP/1.0 
