@@ -1,5 +1,4 @@
 #!/bin/sh
-# poor mans pattern_create :)
 
 m=${2:-AA}
 n=${1:-100}
