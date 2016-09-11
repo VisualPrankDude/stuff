@@ -1,10 +1,8 @@
-#!/bin/bash
-
-m=${2:-AA}
+#/bin/sh
 n=${1:-100}
-
-for ((i=1;i<$n;++i)) {
-  printf $m
-}
-
-  printf "$m\n"
+m=${2:-AA}
+while test $n -gt 2 -a $n -le $n
+do
+       printf "$m"
+       n=$(expr $n - 1)
+done
