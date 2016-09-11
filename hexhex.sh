@@ -7,21 +7,19 @@
 if ! test ${BASH}
 then
   # variable=$(echo "ibase=16; 0xff" | bc)
-  printf "no bash, try bc\n"
+  printf "no bash\n"
   exit 1
 fi
 
 
-if test -z $1 -o  -z "$(echo $1|grep 0x)"
+if test -z $1
 then
-  printf "usage: $0 0xff\n"
+  printf "usage: $0 [0xff|255]\n"
 exit
 fi
 
-# using tr since 1994 
-n=`echo "$[$1]" | tr -s 'a-z' 'A-Z'`
+n=`echo "$[$1]"`
 
-printf "%s\n" $n
+printf "0x%s\n" $n
 printf "0x%x\n" $n
-
-unset BASH n 
+printf "0x%o\n" $n
