@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 H=${1:-netbeisser.de}
-S=1
+S=0.1
 P=80
 DS=/var/tmp/php.txt # method req
 set -o posix
@@ -182,15 +182,12 @@ GET /js/uploadify.css HTTP/1.1
 GET /JS/jquery.uploadify-v2.1.0/uploadify.css HTTP/1.1
 GET /js/Plug-in/jquery.uploadify/uploadify.css HTTP/1.1
 GET /js/jquery.uploadify/uploadify.css HTTP/1.1
-GET / HTTP/1.1
-GET / HTTP/1.1
-GET / HTTP/1.1
 EOF
 
 while read line; do
   sleep $S
 {
-   echo -e "$line\nHost: $H\nUser-Agent: Mozilla/5.1 (Wind0ws; U; Wind0ws ENTE 6.0; en-US)\nContent-Length: AAA\n\r\r\n"
+   echo -e "$line\nHost: $H\nAccept: text/html,text/plain\nAccept-Encoding: gzip\nAccept-Language: en,fr,de\nReferer: http://duckduckgo.com/ducks/myduck/bored/\nUser-Agent: Mozilla/5.1 (Wind0ws; U; Wind0ws ENTE 6.0; en-US)\n\r\n\n"
 }| nc -v $H $P
 # make use of other peoples scans
 done < $DS
