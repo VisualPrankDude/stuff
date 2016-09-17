@@ -191,3 +191,4 @@ while read line; do
 }| nc -v $H $P
 # make use of other peoples scans
 done < $DS
+test -f $DS && /bin/rm $DS
