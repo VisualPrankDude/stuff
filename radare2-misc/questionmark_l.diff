@@ -6,7 +6,7 @@ index aa18d04..ca736c4 100644
                 break;
         case 'l':
                 for (input++; input[0]==' '; input++);
-+                r_cons_printf ("%"PFMT64x"\n", strlen (input));
++               r_cons_printf ("%"PFMT64x"\n", strlen (input));
                 core->num->value = strlen (input);
                 break;
         case 'X':
