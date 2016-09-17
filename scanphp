@@ -159,29 +159,32 @@ GET /phpMyAdmin-2.2.7-pl1/read_dump.phpmain.php HTTP/1.0
 GET http://119.160.244.97/config/isp_verify_user? HTTP/1.0 
 GET http://heise.de/ HTTP/1.0 
 POST /fun/index.php?!=1&topic=%3C?=hex(unique());?%3E%7C%3C?=$id;?%3E
-GET /uploadify/uploadify.css
-GET /uploadify.css
-GET /admin/uploadify/uploadify.css
-GET /public/js/uploadify/uploadify.css
-GET /js/uploadify/uploadify.css
-GET /include/lib/js/uploadify/uploadify.css
-GET /data/plugin/uploadify/uploadify.css
-GET /Public/uploadify/uploadify.css
-GET /addons/uploadify/uploadify.css
-GET /script/multiupload/uploadify.css
-GET /setreuid+rc.sc
-GET /inc/jquery/uploadify/uploadify.css
-GET /general/weibo/javascript/LazyUploadify/uploadify.css
-GET /uploadify/scripts/uploadify.css
-GET /bocadmin/j/custom.js
-GET /css/uploadify.css
-GET /common/uploadify.css
-GET /lib/uploadify.css
-GET /admin/css/uploadify.css
-GET /js/uploadify.css
-GET /JS/jquery.uploadify-v2.1.0/uploadify.css
-GET /js/Plug-in/jquery.uploadify/uploadify.css
-GET /js/jquery.uploadify/uploadify.css
+GET /uploadify/uploadify.css HTTP/1.1
+GET /uploadify.css HTTP/1.1
+GET /admin/uploadify/uploadify.css HTTP/1.1
+GET /public/js/uploadify/uploadify.css HTTP/1.1
+GET /js/uploadify/uploadify.css HTTP/1.1
+GET /include/lib/js/uploadify/uploadify.css HTTP/1.1
+GET /data/plugin/uploadify/uploadify.css HTTP/1.1
+GET /Public/uploadify/uploadify.css HTTP/1.1
+GET /addons/uploadify/uploadify.css HTTP/1.1
+GET /script/multiupload/uploadify.css HTTP/1.1
+GET /setreuid+rc.sc HTTP/1.1
+GET /inc/jquery/uploadify/uploadify.css HTTP/1.1
+GET /general/weibo/javascript/LazyUploadify/uploadify.css HTTP/1.1
+GET /uploadify/scripts/uploadify.css HTTP/1.1
+GET /bocadmin/j/custom.js HTTP/1.1
+GET /css/uploadify.css HTTP/1.1
+GET /common/uploadify.css HTTP/1.1
+GET /lib/uploadify.css HTTP/1.1
+GET /admin/css/uploadify.css HTTP/1.1
+GET /js/uploadify.css HTTP/1.1
+GET /JS/jquery.uploadify-v2.1.0/uploadify.css HTTP/1.1
+GET /js/Plug-in/jquery.uploadify/uploadify.css HTTP/1.1
+GET /js/jquery.uploadify/uploadify.css HTTP/1.1
+GET / HTTP/1.1
+GET / HTTP/1.1
+GET / HTTP/1.1
 EOF
 
 while read line; do
