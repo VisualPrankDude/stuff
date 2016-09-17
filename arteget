@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# alternative not so popular method of getting arte streams
+read -p "Enter url to open, switch to tab (until autostart=1) and hit play, wait 60s"
+xdg-open $REPLY &
+read -p "Execute as root: "
+tcpdump -w /var/tmp/artedump.cap -c 9999 host arte.gl-systemhaus.de and port 80
+sleep 60
+read -p "Hit Enter to dump from file"
+tcpdump -r /var/tmp/artedump.cap host arte.gl-systemhaus.de and port 80 2>/dev/null|awk '/tvg/{print "http://arte.gl-systemhaus.de"$(NF-1)}'
+echo "it should output something like:"
+http://arte.gl-systemhaus.de/am/tvguide/ALL/050827-000-A_SQ_2_VF_02497414_MP4-2200_AMM-Tvguide.mp4
+rm /var/tmp/artedump.cap > /dev/null 2>&1
