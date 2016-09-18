@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# prepare r2 commands to stdout
+BIN=/bin/cp
+#,bash r2fct | grep memc
+#r2 -qc af;s `izz~reloc.memcmp_200`;pd 10;S.;x /bin/ls
+#r2 -qc af;s `izz~reloc.__memcpy_chk_16`;pd 10;S.;x /bin/ls
+#r2 -qc af;s `izz~reloc.memcpy_40`;pd 10;S.;x /bin/ls
+#r2 -qc af;s `izz~memcmp`;pd 10;S.;x /bin/ls
+#r2 -qc af;s `izz~__memcpy_chk`;pd 10;S.;x /bin/ls
+#r2 -qc af;s `izz~memcpy`;pd 10;S.;x /bin/ls
+
+# list of functions:
+for x in `r2 -qc "f~sym.imp[3]" ${BIN} | sed 's/.* 16 \(.*\)/\1/g;s/sym.imp.//g'`
+  do
+# display assembly of function fcn; pd n and display section, hexdump
+# r2 -qc 'af;s `izz~dereference-command-line[3]`;pd 10;S.' /bin/ls
+     echo r2 -qc 'af;s `izz~'$x'`;pd 10;S.;x 16' ${BIN}
+done
