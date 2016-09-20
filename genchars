@@ -3,6 +3,6 @@ n=${1:-100}
 m=${2:-AA}
 while test $n -gt 2 -a $n -le $n
 do
-       printf "$m"
+       printf %s "$m"
        n=$(expr $n - 1)
 done
