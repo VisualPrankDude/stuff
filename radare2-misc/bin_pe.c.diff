@@ -1,0 +1,49 @@
+diff --git a/libr/bin/p/bin_pe.c b/libr/bin/p/bin_pe.c
+index f682c2b..29e7397 100644
+--- a/libr/bin/p/bin_pe.c
++++ b/libr/bin/p/bin_pe.c
+@@ -144,6 +144,9 @@ static RList* sections(RBinFile *arch) {
+ 				R_BIN_SIZEOF_STRINGS);
+ 		}
+ 		ptr->size = sections[i].size;
++		if (!ptr->size) {
++                       return NULL;
++                }
+ 		ptr->vsize = sections[i].vsize;
+ 		if (!ptr->vsize) {
+ 			ptr->vsize = sections[i].size;
+diff --git a/sys/install.sh b/sys/install.sh
+index 9ed90e5..a357e0c 100755
+--- a/sys/install.sh
++++ b/sys/install.sh
+@@ -25,23 +25,24 @@ if [ "$1" != "--without-pull" ]; then
+ 			echo "WARNING: Updating from remote repository"
+ 			git pull
+ 		fi
+-	fi
++fi
+ else
+ 	shift
+ fi
+ 
+ type sudo || NOSUDO=1
+-[ "$(id -u)" = 0 ] || SUDO=sudo
+-[ -n "${NOSUDO}" ] && SUDO=
++NOSUDO=1
++[ "$(id -u)" = 0 ] || SUDO="sudo \"${MAKE} ${INSTALL_TARGET}\""
++[ -n "${NOSUDO}" ] && SUDO="su root -c ${MAKE} ${INSTALL_TARGET}"
+ 
+ if [ "${M32}" = 1 ]; then
+-	./sys/build-m32.sh $* && ${SUDO} ${MAKE} ${INSTALL_TARGET}
++	./sys/build-m32.sh $* && ${SUDO}
+ elif [ "${HARDEN}" = 1 ]; then
+ 	# shellcheck disable=SC2048
+ 	# shellcheck disable=SC2086
+-	./sys/build-harden.sh $* && ${SUDO} ${MAKE} ${INSTALL_TARGET}
++	./sys/build-harden.sh $* && ${SUDO}
+ else
+ 	# shellcheck disable=SC2048
+ 	# shellcheck disable=SC2086
+-	./sys/build.sh $* && ${SUDO} ${MAKE} ${INSTALL_TARGET}
++	./sys/build.sh $* && ${SUDO} ${MAKE}
+ fi
