@@ -101,8 +101,8 @@ drwxr-xr-x  1 1011:1011 40              foo2/
 
 ###Debugging session
 
-a short example zlul grummel session 
-(note: add your sessions here, or see examples in issues/radare.org examples)
+a short example session 
+(note: see examples in issues/radare.org examples)
 
 ```
 r2 -e asm.middle=true -e scr.color=0 blah/a.out
@@ -116,7 +116,7 @@ Searching 16 bytes from 0x00400238 to 0x0040488f: 5f 5f 73 74 61 63 6b 5f 63 68 
 0x0040488f - 0x00404890 1 --- sw break enabled cmd=""
 [0x0040488f]> !!
 History saved to .config/radare2/history
-
+[0x0040488f]> dc
 TBD!1
 ```
 
@@ -195,7 +195,7 @@ To modify the name of the functions shown in calls you can use:
     0x00400426  16  1  fcn.00400426
     0x0040040c  10  2  fcn.0040040c
 
-###Equivalent of hitting "x" in Hopper or IDA?
+###Equivalent of hitting "x" in H*pper or *DA?
 
     axt @str.StringFlag will display the xrefs,
 
