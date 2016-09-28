@@ -187,7 +187,7 @@ EOF
 while read line; do
   sleep $S
 {
-   echo -e "$line\nHost: $H\nAccept: text/html,text/plain\nAccept-Encoding: gzip\nAccept-Language: en,fr,de\nReferer: http://duckduckgo.com/ducks/myduck/bored/\nUser-Agent: Mozilla/5.1 (Wind0ws; U; Wind0ws ENTE 6.0; en-US)\n\r\n\n"
+   echo -e "$line\nHost: $H\nAccept: text/html,text/plain\nAccept-Encoding: gzip\nAccept-Language: en,fr,de\nConnection: keep-alive\nReferer: http://duckduckgo.com/ducks/myduck/bored/\nUser-Agent: Mozilla/5.1 (Wind0ws; U; Wind0ws ENTE 6.0; en-US)\n\r\n\n"
 }| nc -v $H $P
 # make use of other peoples scans
 done < $DS
