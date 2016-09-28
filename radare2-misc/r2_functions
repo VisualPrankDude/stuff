@@ -19,3 +19,16 @@ printf ".init (ctors) of $1\n"
 fi
 r2 -qc "af;S~.init[5]$" $1
 }
+
+
+__getfaddr() {
+BIN=$1
+
+if test -z $BIN
+then
+  echo usage: "function binary"
+exit 1
+fi
+
+/usr/local/bin/r2 -qc  "f~sym.${BIN}[0]" $2
+}
