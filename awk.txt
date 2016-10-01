@@ -1,5 +1,4 @@
 # reduce tcpdump output in http downloads
-# (see other data from download host)
 
 # use clock to print every equal minute data to stdout
 tcpdump -Z user -l | awk -F ':' '{if($2%2==0) print }'
