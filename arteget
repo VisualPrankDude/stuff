@@ -3,7 +3,7 @@
 # alternative not so popular method of getting arte streams
 read -p "Enter url to open, switch to tab (until autostart=1) and hit play, wait 60s"
 xdg-open $REPLY &
-read -p "Execute as root: "
+read  "Execute as root: "
 tcpdump -s0 -w /var/tmp/artedump.cap -c 9999 host arte.gl-systemhaus.de and port 80
 sleep 60
 read -p "Hit Enter to dump from file"

@@ -23,17 +23,17 @@ int print_shdr(const char *const f, size_t s) {
 	int fd  = open(f, O_RDONLY);
 	char *p = mmap(0, s, PROT_READ, MAP_PRIVATE, fd, 0);
 
-	if(p==NULL) {
+	if(p == NULL) {
 		printf("mmap() failed\n");
 		exit(22);
 	}
 
 
-	Elf64_Ehdr *ehdr = (Elf64_Ehdr*)p; /* checked in main */
+	Elf64_Ehdr *ehdr = (Elf64_Ehdr*)p;
 	Elf64_Shdr *shdr = (Elf64_Shdr *)(p + ehdr->e_shoff);
 	Elf64_Phdr *phdr = (Elf64_Phdr *)p;
 
-	if(phdr->p_type==6) { // XXX
+	if(phdr->p_type == 6) { /*  XXX */
 		printf("[+] Found PT_PHDR magic\n");
 	}
 
@@ -59,12 +59,7 @@ int print_shdr(const char *const f, size_t s) {
 
 		if (ehdr->e_ident ==  3)  {  /* ELFOSABI_LINUX) */
 			printf("[o] Linux (ELFOSABI_LINUX) \n");
-			//exit(1);
 		}
-
-
-		printf("Dumping all sections\n\
-				segment\tindex\toffset\tsize\tsection name\n");
 
 		if ( ehdr->e_shnum == 0 ||\
 				ehdr->e_shoff == 0 ||\
@@ -76,20 +71,20 @@ int print_shdr(const char *const f, size_t s) {
 		int shnum = ehdr->e_shnum;
 		Elf64_Shdr *sh_strtab = &shdr[ehdr->e_shstrndx];
 		const char *const sh_strtab_p = p + sh_strtab->sh_offset;
-		printf("shnum: %d\n", shnum);
+		printf("[o] Number of sections (shnum): %d\n", shnum);
 		char *LOAD1;
 
 		/* owned machine */
 		if(strstr(0x0021cd10,LOAD1)) {
 			/* printf("[+] Found PT_LOAD0 at 0x%u\n", 0x0021cd10 - 0x1c7f4);  /bin/ls XXX */ 
-			printf("[+] Found PT_LOAD0 at 0x%u\n", 0x0021cd10 - ehdr->e_ehsize); // XXX
+			printf("[+] Found PT_LOAD0 at 0x%u\n", 0x0021cd10 - ehdr->e_ehsize);
 			printf("[+] Found PT_LOAD1 at 0x%u\n");
 		}
 
+		printf("Dumping all sections\n\
+segment\tindex\toffset\tsize\tsection name (rwx)\n");
 
 		for (int i = 0; i < shnum; i++) {
-
-			printf("%d\n ", phdr->p_flags & ( PF_R | PF_W | PF_X )); /* XXX */
 
 			if (strcmp(GNU, sh_strtab_p + shdr[i].sh_name) == 0 ) {
 				printf("Binary is from\033[91m");
@@ -109,8 +104,10 @@ int print_shdr(const char *const f, size_t s) {
 			}
 
 			if (getenv("DUMPSECT")) { 
-				printf("%2d: %4d\t0x%lu,\t0x%lu\t'%s'\n", i, shdr[i].sh_name,
-						shdr[i].sh_offset,  shdr[i].sh_size,  sh_strtab_p + shdr[i].sh_name);  
+				printf("%2d: %4d\t0x%lu,\t0x%lu\t%s (%d)\n", i, shdr[i].sh_name,
+				shdr[i].sh_offset,  shdr[i].sh_size,  sh_strtab_p + shdr[i].sh_name,
+                                7 - ( phdr->p_flags & ( PF_R | PF_W | PF_X ))); /* XXX  */
+
 			}
 		}
 		printf("[+] Done.\n");
@@ -118,37 +115,29 @@ int print_shdr(const char *const f, size_t s) {
 		return 0;
 }
 
-int check_uname() {  /* check for running arch */
-	struct utsname n; 
-	uname (&n);
-	printf("[+] Found a %.10s system\n", n.sysname);
-	return 0;
-}
-
-
-
 int main(int ac, char *av[]) {
 	struct stat st;
 	const char *f = "/bin/sh";
 
-	if (1==ac)
-		printf("Look for ELF sections by VisualPrankDude\n"); 
+	if (1 == ac)
+		puts("[€] Look for ELF sections by VisualPrankDude"); 
 
-	if (ac>1) {
+	if (ac > 1) {
 		char buf[4] = {0,0,0,0};
 		int testfd = open(av[1],O_RDONLY);
 		read(testfd,buf,4);
 
-		if(strstr(buf,"\177ELF")) {
+		if (strstr(buf,"\177ELF")) {
 			puts("[+] valid ELF mag so far");
 		} else {
 			puts("[-] No ELF mag found");
 			exit(1);
 		}
 		buf[0] = '\0';
-		close(testfd);
+                if(testfd)
+		   close(testfd);
 	}
-	check_uname(); 
+	 
 	f = av[1];
 
 	if (stat(f, &st) != 0) {
