@@ -7,7 +7,7 @@ if test $verbose
 then
 printf ".fini (dtors) of $bin\n"
 fi
-r2 -qc "af;S~.fini[5]$" $bin
+/usr/local/bin/r2 -qc "af;S~.fini[5]$" $bin
 }
 
 __section_get_init() {
@@ -17,7 +17,7 @@ if test $verbose
 then
 printf ".init (ctors) of $1\n"
 fi
-r2 -qc "af;S~.init[5]$" $1
+/usr/local/bin/r2 -qc "af;S~.init[5]$" $1
 }
 
 
@@ -31,4 +31,9 @@ exit 1
 fi
 
 /usr/local/bin/r2 -qc  "f~sym.${BIN}[0]" $2
+}
+
+
+__get_section_by_name() {
+/usr/local/bin/r2 -qc "izz~section=[11]|sort -u" $1
 }

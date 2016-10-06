@@ -24,11 +24,3 @@ int main() {
     memcpy(0x601018,SC,2);    /* try overwrt printf@got, jmp to memcpy */
     return 0;
 }
-
-/* 
-(gdb) stepi
-_dl_new_object (realname=realname@entry=0x7ffff7df655c "", libname=libname@entry=0x7ffff7df655c "", type=type@entry=0, 
-    loader=loader@entry=0x0, mode=mode@entry=536870912, nsid=nsid@entry=0) at dl-object.c:97
-97      dl-object.c: No such file or directory.
-(gdb) stepi
-*/

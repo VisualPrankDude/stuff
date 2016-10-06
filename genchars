@@ -1,6 +1,7 @@
 #/bin/sh
 n=${1:-100}
 m=${2:-AA}
+#m="A%$$"
 while test $n -gt 2 -a $n -le $n
 do
        printf %s "$m"

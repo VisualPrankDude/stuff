@@ -1,10 +1,10 @@
-# reduce tcpdump output in http downloads
+# reduce tcpdump output in downloads
 
 # use clock to print every equal minute data to stdout
 tcpdump -Z user -l | awk -F ':' '{if($2%2==0) print }'
 
 # untested: check for lenght of pack that is not http
-tcpdump -Z user -l | awk -F  '/!HTTP/{if length($NF==0) print }'
+tcpdump -Z user -l | awk -F  '/!foo/{if length($NF==0) print }'
 
 # skip payload in large http dl line based
-tcpdump -Z user -l | awk '/!HTTP/{if($NR%2==0) print }'
+tcpdump -Z user -l | awk '/!foo/{if($NR%2==0) print }'
