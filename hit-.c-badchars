@@ -70,6 +70,7 @@ int obfuscate(unsigned char *s, unsigned char *d) {
     unsigned char nl[] = "\n";
     unsigned char tb[] = "\t";
     unsigned char cr[] = "\r";
+    unsigned char cv[] = "\v";
     int i, j, len;
 
 
@@ -88,6 +89,7 @@ int obfuscate(unsigned char *s, unsigned char *d) {
     rep = str_replace("\\n", nl, s);
     rep = str_replace("\\t", tb, rep);
     rep = str_replace("\\r", cr, rep);
+    rep = str_replace("\\v", cv, rep);
 
 
 
@@ -161,7 +163,7 @@ int main(int argc, char *argv[]) {
 
 
     if (argc < 2) {
-        printf("Usage: %s <string>\n", argv[0]);
+        printf("Usage: prog <string>\n");
         return 0;
     }
 
@@ -179,6 +181,10 @@ int main(int argc, char *argv[]) {
 
 
     buf = (unsigned char *)malloc(obf_len);
+    if (!buf) {
+         printf("erreur with malloc\n");
+         exit (1);
+    } 
     memset(buf, 0x00, obf_len);
 
 
