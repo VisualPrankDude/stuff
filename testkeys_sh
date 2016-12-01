@@ -1,0 +1,29 @@
+goal: count all bytes from ssh-keys (pub/priv), translate to decimal, sort by occurance
+
+1. make keys
+#for i in 1 2 3 4 5 6 7 8 9 10; do ssh-keygen -b 1024 -N "" -f testkeys/n_$i; done
+for ((i=1;i<1000;i++)); do ssh-keygen -b 1024 -N "" -f testkeys/i_$i; done
+2. do the dirt with key i_42
+for x in `hexdump -C testkeys/i_42 | sed 's/00000...//g'| sed 's/|.*//g'| sed 's/  / /g'| tr -s ' ' '\n'`; do echo $((0x${x#0x})); done | sort -n | uniq -c | sort -k1 -n
+
+3. do the dirt with all key
+for x in `hexdump -C testkeys/i_* | sed 's/00000...//g'| sed 's/|.*//g'| sed 's/  / /g'| tr -s ' ' '\n'`; do echo $((0x${x#0x})); done | sort -n | uniq -c | sort -k1 -n
+
+
+#Generating public/private rsa key pair.
+#Your identification has been saved in testkeys/i_199.
+#Your public key has been saved in testkeys/i_199.pub.
+#The key fingerprint is:
+#SHA256:4g5aKv0bY4l9JGPhk+ft6h7gKrPhkW6CtRIyukI5bKo sk@Schlumpf01
+#The key's randomart image is:
+#+---[RSA 1024]----+
+#|                 |
+#|                 |
+#|    .            |
+#|   . o           |
+#|. . O + S        |
+#|+*o= @ o         |
+#|OBo.X = .        |
+#|&o+* * o         |
+#|EX+.o+=..        |
+#+----[SHA256]-----+
